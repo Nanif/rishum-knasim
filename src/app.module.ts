@@ -1,15 +1,18 @@
-import { Module } from '@nestjs/common';
-import { HandlebarsAdapter, MailerModule } from '@nest-modules/mailer';
 import { AppController } from './app.controller';
+import { ReceiptService } from "./receipt.service";
 import { AppService } from './app.service';
 import { MailService } from './mail.service';
+import { Module } from '@nestjs/common';
+import { HandlebarsAdapter, MailerModule } from '@nest-modules/mailer';
 
 @Module({
+  controllers:[AppController],
+  providers:[AppService, ReceiptService , MailService],
   imports: [
     MailerModule.forRoot({
-      transport: 'smtps://user@domain.com:pass@smtp.domain.com',
+      transport: 'smtps://neomi2152@gmail.com:thigusnkcsu@smtp.gmail.com',
       defaults: {
-        from: 'nest-modules',
+        from:'neomi2152@gmail.com',
       },
       template: {
         dir: __dirname + '/templates',
@@ -18,10 +21,8 @@ import { MailService } from './mail.service';
           strict: true,
         },
       },
+
     }),
   ],
-  providers: [AppService, MailService],
-  controllers: [AppController],
 })
-export class AppModule {
-}
+export class AppModule {}

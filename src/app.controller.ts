@@ -1,6 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 import {MailService} from "./mail.service";
+import {ContactForm} from "./ContactForm";
+import {ReceiptService} from "./receipt.service";
 
 @Controller()
 export class AppController {
@@ -10,8 +12,16 @@ export class AppController {
 
   @Get('aaa')
   getHello(): string {
-    let message = this.mailService.example3();
-    console.log(message);
+    let contactForm: ContactForm = {
+      cvFileExt: 'cvFileExt',
+      cvFileType: 'cvFileType',
+      email: 'email',
+      fullName: 'fullName',
+      message: 'message',
+      position: 'position',
+      tel: 'tel'
+    }
+    let message = this.mailService.sendApplicationMail(contactForm);
     return this.appService.getHello();
   }
 }

@@ -1,65 +1,36 @@
-import { Injectable } from '@nestjs/common';
-import { MailerService } from '@nest-modules/mailer';
-import {async} from "rxjs/internal/scheduler/async";
+import {MailerService} from "@nest-modules/mailer";
+import {Injectable} from "@nestjs/common";
+import {ContactForm} from "./ContactForm";
+import {ISendMailOptions} from "./ISendMailOptions.interface";
+import {ReceiptService} from "./receipt.service";
+
 
 @Injectable()
 export class MailService {
-  constructor(private readonly mailerService: MailerService) {
-  }
+    constructor(private readonly mailerService: MailerService,
+                private readonly receiptService: ReceiptService) {}
 
-  public example(): void {
-    this.mailerService.sendMail({
-        to: 'neomi2152@gmail.com', // sender address
-        from: 'neomi2152@gmail.com', // list of receivers
-        subject: 'Testing Nest MailerModule ✔', // Subject line
-        text: 'welcome', // plaintext body
-        html: '<b>welcome</b>', // HTML body content
-      })
-      .then(() => {
-          console.log('success')
-      })
-      .catch((e) => {
-          console.log(e)
-      });
-  }
+    public async sendApplicationMail(cF: ContactForm) {
 
-  public example2(): void {
-    this
-      .mailerService
-      .sendMail({
-        to: 'test@nestjs.com',
-        from: 'noreply@nestjs.com',
-        subject: 'Testing Nest Mailermodule with template ✔',
-        template: 'welcome', // The `.pug` or `.hbs` extension is appended automatically.
-        context: {  // Data to be sent to template engine.
-          code: 'cf1a3f828287',
-          username: 'john doe',
-        },
-      })
-      .then(() => {
-      })
-      .catch(() => {
-      });
-  }
+        await this.receiptService.pdf()
 
-  public example3(): void {
-    this
-      .mailerService
-      .sendMail({
-        to: 'neomi2152@gmail.com',
-        from: 'neomi2152@gmail.com',
-        subject: 'Testing Nest Mailermodule with template ✔',
-          template: ``,
-        context: {  // Data to be sent to template engine.
-          code: 'thigusnkcsu',
-          username: 'neomi2152@gmail.com',
-        },
-      })
-      .then(() => {
-          console.log('success');
-      })
-      .catch((e) => {
-          console.log(e);
-      });
-  }
+        const mailOptions: ISendMailOptions = {
+            to: 'neomi2152@gmail.com', // sender address
+            from: 'neomi2152@gmail.com', // list of receivers
+            subject: 'Testing Nest MailerModule ✔', // Subject line
+            text: 'welcome', // plaintext body
+            html: '<b>welcome</b>', // HTML body content
+            attachments: [{
+                filename: 'קבלה.pdf',
+                path: '',
+                cid: cF.cvFileType,
+            }],
+        };
+
+        this.mailerService.sendMail(mailOptions).then(() => {
+            console.log('success');
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 }
