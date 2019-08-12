@@ -1,8 +1,5 @@
-import {Injectable} from "@nestjs/common";
-import {PDFDocument, StandardFonts, rgb} from 'pdf-lib'
-import {log} from "util";
-
-
+import {Injectable } from "@nestjs/common";
+import {PDFDocument, StandardFonts, rgb, degrees} from 'pdf-lib'
 let fs = require('fs');
 
 @Injectable()
@@ -11,12 +8,11 @@ export class ReceiptService {
     constructor() {
     }
 
-    public filePath: string;
+    public filePath: 'Naomi.pdf';
 
     public async pdf() {
 
         const pdfDoc = await PDFDocument.create()
-        console.log(pdfDoc);
 // Embed the Times Roman font
         const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
 
@@ -28,6 +24,19 @@ export class ReceiptService {
 
 // Draw a string of text toward the top of the page
         const fontSize = 30
+        // const jpgUrl = 'http://shmura.org/wp-content/uploads/2019/06/unnamed.jpg'
+        // const jpgImageBytes = await this.http.get(jpgUrl).subscribe(res => res.arrayBuffer())
+
+        const jpgImage = await pdfDoc.embedJpg('shmura.jpg')
+        const jpgDims = jpgImage.scale(0.5)
+
+
+        // page.drawImage(jpgImage, {
+        //     x: 25,
+        //     y: 25,
+        //     width: jpgDims.width,
+        //     height: jpgDims.height,
+        // });
         page.drawText('Creating PDFs in JavaScript is awesome!', {
             x: 50,
             y: height - 4 * fontSize,
@@ -38,6 +47,14 @@ export class ReceiptService {
 
 // Serialize the PDFDocument to bytes (a Uint8Array)
         const pdfBytes = await pdfDoc.save()
+
+        fs.appendFile(`${this.filePath}`, pdfBytes, function (err) {
+            if (err) {
+                throw(err);
+            } else {
+            }
+        });
+
         console.log(pdfBytes);
     }
 
