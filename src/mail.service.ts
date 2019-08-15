@@ -22,7 +22,7 @@ export class MailService {
             html: '<b>welcome</b>', // HTML body content
             attachments: [{
                 filename: 'קבלה.pdf',
-                path: 'Naomi.pdf',
+                path: 'bla.pdf',
                 cid: cF.cvFileType,
             }],
         };
