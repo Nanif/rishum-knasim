@@ -44,7 +44,7 @@ export class PdfFileService {
         <hr>
         <div class="receipt_details">
             <div>
-                <span>תאריך הפנקה:</span>
+                <span>תאריך הנפקה:</span>
                 <span>${todayDate}</span>
             </div>
             <div>
@@ -62,10 +62,6 @@ export class PdfFileService {
             <div>
                 <span>${data.Email}</span>
                 <span>:דוא''ל</span>
-            </div>
-            <div>
-                <span>מספרכם:</span>
-                <span>123456789</span>
             </div>
         </div>
     </div>
