@@ -159,7 +159,6 @@ export class PdfFileService {
 </style>
 </body>
 </html>`
-        this.filePath = `1234.html`
         const browser = await puppeteer.launch({headless: true});
         const page = await browser.newPage();
         await page.setContent(pdfTemplate);
