@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <body>
-
-<script src="receipt.js"></script>
 <div class="wrapper_all_page">
     <div class="top_panel_wrapper">
         <div class="shmura_description">
@@ -21,32 +19,50 @@
         </div>
         <hr>
         <div class="receipt_details">
-            <div>:תאריך הפקה</div>
-            <div>:תאריך תשלום</div>
-            <div>:לכבוד</div>
-            <div>:טלפון</div>
-            <div>:דוא''ל</div>
-            <div>:מספרכם</div>
+            <div>
+                <span>תאריך הפקה:</span>
+                <span>01/01/2019</span>
+            </div>
+            <div>
+                <span>תאריך תשלום:</span>
+                <span>01/01/2019</span>
+            </div>
+            <div>
+                <span>לכבוד:</span>
+                <span>נעמי פישביין</span>
+            </div>
+            <div>
+                <span>טלפון:</span>
+                <span>0504112152</span>
+            </div>
+            <div>
+                <span>neomi2152@gmail.com</span>
+                <span>:דוא''ל</span>
+            </div>
+            <div>
+                <span>מספרכם:</span>
+                <span>123456789</span>
+            </div>
         </div>
     </div>
     <div class="written_proof_section">
         <span class="written_proof">:אסמכתא</span>
         <table class="tbl_written_proof">
             <tr>
-                <th>עבור</th>
-                <th>סוג תשלום</th>
-                <th>פירוט</th>
-                <th>כמות</th>
-                <th>מחיר</th>
                 <th>סה''כ לתשלום</th>
+                <th>מחיר</th>
+                <th>כמות</th>
+                <th>פירוט</th>
+                <th>סוג תשלום</th>
+                <th>עבור</th>
             </tr>
             <tr>
-                <td class="for"></td>
-                <td class="payment_type"></td>
-                <td class="particulars"></td>
-                <td class="amount"></td>
-                <td class="price"></td>
-                <td class="sum"></td>
+                <td class="sum">20</td>
+                <td class="price">10.10</td>
+                <td class="amount">2</td>
+                <td class="particulars">פאג''י 06/21 593</td>
+                <td class="payment_type">כרטיס אשראי</td>
+                <td class="for">כרטיס כניסה אלול </td>
             </tr>
         </table>
     </div>
@@ -107,6 +123,9 @@
 
     .tbl_written_proof {
         width: 100%;
+    }
+    tr {
+        text-align: end;
     }
 
     table, th, td {

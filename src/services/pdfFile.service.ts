@@ -1,8 +1,30 @@
-<!DOCTYPE html>
+import {Injectable} from "@nestjs/common";
+
+const fs = require('fs');
+const puppeteer = require('puppeteer')
+
+@Injectable()
+export class PdfFileService {
+
+    constructor() {
+    }
+
+    private getTodayDate() {
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0');
+        let yyyy = today.getFullYear();
+        return `${mm}/${dd}/${yyyy}`;
+    }
+
+    private filePath;
+
+    public async createPdf(data) {
+        let todayDate = this.getTodayDate()
+        let pdfTemplate = `<!DOCTYPE html>
 <meta charset="utf-8">
 <body>
-
-<script src="receipt.js"></script>
+<script src="../receipt.js"></script>
 <div class="wrapper_all_page">
     <div class="top_panel_wrapper">
         <div class="shmura_description">
@@ -21,12 +43,30 @@
         </div>
         <hr>
         <div class="receipt_details">
-            <div>:תאריך הפקה</div>
-            <div>:תאריך תשלום</div>
-            <div>:לכבוד</div>
-            <div>:טלפון</div>
-            <div>:דוא''ל</div>
-            <div>:מספרכם</div>
+            <div>
+                <span>תאריך הפנקה:</span>
+                <span>${todayDate}</span>
+            </div>
+            <div>
+                <span>תאריך תשלום:</span>
+                <span>${todayDate}</span>
+            </div>
+            <div>
+                <span>לכבוד:</span>
+                <span>${data.PrivateName}</span>
+            </div>
+            <div>
+                <span>טלפון:</span>
+                <span>${data.PhoneHand}</span>
+            </div>
+            <div>
+                <span>${data.Email}</span>
+                <span>:דוא''ל</span>
+            </div>
+            <div>
+                <span>מספרכם:</span>
+                <span>123456789</span>
+            </div>
         </div>
     </div>
     <div class="written_proof_section">
@@ -41,12 +81,12 @@
                 <th>סה''כ לתשלום</th>
             </tr>
             <tr>
-                <td class="for"></td>
-                <td class="payment_type"></td>
-                <td class="particulars"></td>
-                <td class="amount"></td>
-                <td class="price"></td>
-                <td class="sum"></td>
+                <td class="for">כרטיס כניסה אלול </td>
+                <td class="payment_type">כרטיס אשראי</td>
+                <td class="particulars">פאג''י 06/21 593</td>
+                <td class="amount">2</td>
+                <td class="price">10.10</td>
+                <td class="sum">20</td>
             </tr>
         </table>
     </div>
@@ -108,6 +148,9 @@
     .tbl_written_proof {
         width: 100%;
     }
+    tr {
+        text-align: end;
+    }
 
     table, th, td {
         border: 1px solid black;
@@ -115,4 +158,16 @@
     }
 </style>
 </body>
-</html>
+</html>`
+        this.filePath = `1234.html`
+        const browser = await puppeteer.launch({headless: true});
+        const page = await browser.newPage();
+        await page.setContent(pdfTemplate);
+        setTimeout(async () => {
+            const pdf = await page.pdf({format: 'A4'});
+            const writeStream = fs.createWriteStream(`${data.ArmyID}.pdf`);
+            writeStream.write(pdf);
+            writeStream.end();
+        }, 3000);
+    }
+}

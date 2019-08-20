@@ -1,19 +1,18 @@
 import {MailerService} from "@nest-modules/mailer";
 import {Injectable} from "@nestjs/common";
-import {ContactForm} from "./ContactForm";
-import {ISendMailOptions} from "./ISendMailOptions.interface";
-import {ReceiptService} from "./receipt.service";
+import {ContactForm} from "../ContactForm";
+import {ISendMailOptions} from "../ISendMailOptions.interface";
+import {PdfFileService} from "./pdfFile.service";
 
+const fs = require('fs')
 
 @Injectable()
 export class MailService {
     constructor(private readonly mailerService: MailerService,
-                private readonly receiptService: ReceiptService) {}
+                private readonly receiptService: PdfFileService) {
+    }
 
-    public async sendApplicationMail(cF: ContactForm) {
-
-        await this.receiptService.pdf()
-
+    public async sendApplicationMail(data) {
         const mailOptions: ISendMailOptions = {
             to: 'neomi2152@gmail.com', // sender address
             from: 'neomi2152@gmail.com', // list of receivers
@@ -22,13 +21,18 @@ export class MailService {
             html: '<b>welcome</b>', // HTML body content
             attachments: [{
                 filename: 'קבלה.pdf',
-                path: 'bla.pdf',
-                cid: cF.cvFileType,
+                path: `${data.ArmyID}.pdf`
             }],
         };
 
         this.mailerService.sendMail(mailOptions).then(() => {
-            console.log('success');
+            fs.unlink(`${data.ArmyID}.pdf`, (err) => {
+                if (err) {
+                    console.error(err)
+                    return
+                }
+                console.log('removed!')
+            })
         }).catch(err => {
             console.log(err);
         });
