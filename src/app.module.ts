@@ -10,7 +10,7 @@ import { HandlebarsAdapter, MailerModule } from '@nest-modules/mailer';
   providers:[AppService, PdfFileService , MailService],
   imports: [
     MailerModule.forRoot({
-      transport: 'smtps://neomi2152@gmail.com:thigusnkcsu@smtp.gmail.com',
+      transport: 'smtp://neomi2152@gmail.com:thigusnkcsu@smtp.gmail.com',
       defaults: {
         from:'neomi2152@gmail.com',
       },
