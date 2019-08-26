@@ -7,7 +7,8 @@ import {PdfFileService} from "../services/pdfFile.service";
 export class AppController {
     constructor(private readonly appService: AppService,
                 private readonly mailService: MailService,
-                private readonly pdfFileService: PdfFileService) {
+                private readonly pdfFileService: PdfFileService,
+    ) {
     }
 
     @Post('sendReceipt')
