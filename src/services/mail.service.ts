@@ -28,20 +28,16 @@ export class MailService {
                     <p>נא הדפיסי והציגי אותה בכניסה לאולם.</p>
                     <p>מחכות לראותך,</p>
                     <p>צוות השמורה</p>`, // HTML body content
-            attachments: [{
-                filename: 'קבלה.pdf',
-                path: `${data.ArmyID}.pdf`
-            }],
         };
 
         this.mailerService.sendMail(mailOptions).then(() => {
-            fs.unlink(`${data.ArmyID}.pdf`, (err) => {
-                if (err) {
-                    console.error(err)
-                    return
-                }
-                console.log('removed!')
-            })
+            // fs.unlink(`${data.ArmyID}.pdf`, (err) => {
+            //     if (err) {
+            //         console.error(err)
+            //         return
+            //     }
+            //     console.log('removed!')
+            // })
         }).catch(err => {
             console.log('sendMail', err);
         });

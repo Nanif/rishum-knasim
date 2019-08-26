@@ -13,7 +13,7 @@ export class AppController {
 
     @Post('sendReceipt')
     SendReceipt(@Body() data) {
-        let pdfFile = this.pdfFileService.createPdf(data)
+        // let pdfFile = this.pdfFileService.createPdf(data)
         setTimeout(() => {
             let message = this.mailService.sendApplicationMail(data);
             return this.appService.getHello();
