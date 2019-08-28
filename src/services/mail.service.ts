@@ -15,7 +15,7 @@ export class MailService {
     public async sendApplicationMail(data) {
         const mailOptions: ISendMailOptions = {
             to: data.Email, // sender address
-            from: 'neomi2152@gmail.com', // list of receivers
+            from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
             subject: 'כרטיס כניסה לכנס יהיו לרצון', // Subject line
             text: `${data.PrivateName} `, // plaintext body
             html: `<b>נעמי יקרה</b>
