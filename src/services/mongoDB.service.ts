@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 
-const mongo = require('mongodb');
+const MongoClient = require('mongodb').MongoClient;
 
 @Injectable()
 export class MongoDBService {
@@ -10,25 +10,49 @@ export class MongoDBService {
     collection;
 
     public async init() {
-        const url = process.env.MONGO_URI
-        const connection = mongo.connect(url,
-            {
-                useNewUrlParser: true,
-                useUnifiedTopology: true
-            }).then((res) => {
-            console.log('res', res);
-            console.log('wertfgyhujikolp', connection);
-            const db = connection.db('RecieptsDataDB');
-            this.collection = db.collection('Receipt')
-        }).catch((error) => {
-            console.log('error', error)
-        }).final()
+        // const uri = "mongodb+srv://shmura:knasim15@shmuracluster-vx7fp.mongodb.net/test?retryWrites=true&w=majority";
+        // MongoClient.connect(uri,  {
+        //     useNewUrlParser: true,
+        //     useUnifiedTopology: true
+        // }, function(err: any, client: any) {
+        //     if(err) {
+        //         console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+        //     }
+        //     else {
+        //         console.log('Connected...');
+        //     }
+        //     // const collection = client.db("RecieptsDataDB").collection("Receipt");
+        //     // perform actions on the collection object
+        //     // client.close();
+        // });
+
+        //
+        // const url = process.env.MONGO_URI
+        // const connection = await mongo.connect('mongodb+srv://shmura:knasim15@shmuracluster-vx7fp.mongodb.net/test?retryWrites=true&w=majority',
+        //     { useNewUrlParser: true }, { useUnifiedTopology: true } )
+        // console.log('connection', connection);
+        // const db = connection.db('RecieptsDataDB');
+        // this.collection = db.collection('Receipt')
     }
 
-    public saveDataInDb(dataObj) {
+    public async saveDataInDb(dataObj) {
+        const uri = "mongodb+srv://shmura:knasim15@shmuracluster-vx7fp.mongodb.net/test?retryWrites=true&w=majority";
+        MongoClient.connect(uri,  {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        }, function(err: any, client: any) {
+            if(err) {
+                console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+            }
+            else {
+                console.log('Connected...');
+                this.client.insert(dataObj)
+            }
+            // const collection = client.db("RecieptsDataDB").collection("Receipt");
+            // perform actions on the collection object
+            // client.close();
+        });
 
-        this.init();
-        console.log('lololo');
         console.log(this.collection);
         // this.collection.inse(dataObj)
     }

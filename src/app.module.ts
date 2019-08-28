@@ -13,7 +13,7 @@ import { HandlebarsAdapter, MailerModule } from '@nest-modules/mailer';
     MailerModule.forRoot({
       transport: `smtp://${process.env.GMAIL_SMTP_USER}:${process.env.GMAIL_SMTP_PASSWORD}@smtp.gmail.com`,
       defaults: {
-        from:'neomi2152@gmail.com',
+        from: `${process.env.GMAIL_SMTP_USER}`,
       },
       template: {
         dir: __dirname + '/templates',
@@ -22,7 +22,6 @@ import { HandlebarsAdapter, MailerModule } from '@nest-modules/mailer';
           strict: true,
         },
       },
-
     }),
   ],
 })

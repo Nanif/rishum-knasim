@@ -18,11 +18,15 @@ export class AppController {
     SendReceipt(@Body() data) {
 
         // @ts-ignore
-        this.mongoDBService.saveDataInDb(data);
+        this.mongoDBService.saveDataInDb(data).then((res) => {
+            console.log('res', res)
+        }).catch((error) => {
+            console.log('error', error);
+        });
 
         // let pdfFile = this.pdfFileService.createPdf(data)
         setTimeout(() => {
-            let message = this.mailService.sendApplicationMail(data);
+            // let message = this.mailService.sendApplicationMail(data);
             return this.appService.getHello();
         }, 5000)
     }
