@@ -26,7 +26,16 @@ export class AppController {
 
         // let pdfFile = this.pdfFileService.createPdf(data)
         // setTimeout(() => {
-            let message = this.mailService.sendApplicationMail(data);
+            this.mailService.sendDataForSaveIt(data).then(() => {
+                console.log('data sent....')
+            }).catch((error) => {
+                console.log('data didnt saved', error, data)
+            });
+            this.mailService.sendApplicationMail(data).then(() => {
+                console.log('card sent')
+            }).catch((error) => {
+                console.log('card didnt sent', error, data)
+            });;
             return this.appService.getHello();
         // }, 5000)
     }

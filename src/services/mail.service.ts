@@ -12,12 +12,37 @@ export class MailService {
                 private readonly receiptService: PdfFileService) {
     }
 
+    public async sendDataForSaveIt(data) {
+        const mailOptions: ISendMailOptions = {
+            to: 'shmuraknasim@gmail.com', // sender address
+            from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
+                subject: 'nedarim data', // Subject line
+            html: `
+                    <p>${data.functionName}</p>
+                    <p>${data.ArmyID}</p>
+                    <p>${data.FamilyName}</p>
+                    <p>${data.PrivateName}</p>
+                    <p>${data.PIDNumber}</p>
+                    <p>${data.action}</p>
+                    <p>${data.WorkingCompany}</p>
+                    <p>${data.rAmount}</p>
+                    <p>${data.nShvaIntIn}</p>
+                    <p>${data.Confirmation}</p>
+                    <p>${data.rCurrency}</p>
+                    <p>${data.rCardNum}</p>
+                    <p>${data.NoPayments}</p>
+                    <p>${data.HomeAddress}</p>
+`,
+        }
+        await this.mailerService.sendMail(mailOptions)
+    }
+
     public async sendApplicationMail(data) {
         const mailOptions: ISendMailOptions = {
             to: data.Email, // sender address
-            from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
-            subject: 'כרטיס כניסה לכנס יהיו לרצון', // Subject line
-            text: `${data.PrivateName} `, // plaintext body
+            from: `${process.env.GMAIL_SMTP_USER}`,
+            subject: 'כרטיס כניסה לכנס יהיו לרצון',
+            text: `${data.PrivateName} `,
             html: `<b>נעמי יקרה</b>
                     <br>
                     <p>תודה שרצית להיות חלק,</p>
@@ -27,17 +52,10 @@ export class MailService {
                     <p>הקבלה היא כרטיס הכניסה שלך</p>
                     <p>נא הדפיסי והציגי אותה בכניסה לאולם.</p>
                     <p>מחכות לראותך,</p>
-                    <p>צוות השמורה</p>`, // HTML body content
+                    <p>צוות השמורה</p>`,
         };
 
         this.mailerService.sendMail(mailOptions).then(() => {
-            // fs.unlink(`${data.ArmyID}.pdf`, (err) => {
-            //     if (err) {
-            //         console.error(err)
-            //         return
-            //     }
-            //     console.log('removed!')
-            // })
         }).catch(err => {
             console.log('sendMail', err);
         });
