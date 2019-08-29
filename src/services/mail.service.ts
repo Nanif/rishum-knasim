@@ -12,26 +12,45 @@ export class MailService {
                 private readonly receiptService: PdfFileService) {
     }
 
+
+    private converDataToArryas(data) {
+        let newArray = []
+        Object.keys(data).forEach((key) => {
+            newArray.push({key: key, value: data[key]})
+        });
+        return newArray
+    }
+
     public async sendDataForSaveIt(data) {
+
+        let arrayOfData = this.converDataToArryas(data)
         const mailOptions: ISendMailOptions = {
             to: 'shmuraknasim@gmail.com', // sender address
             from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
                 subject: 'nedarim data', // Subject line
             html: `
-                    <p>${data.functionName}</p>
-                    <p>${data.ArmyID}</p>
-                    <p>${data.FamilyName}</p>
-                    <p>${data.PrivateName}</p>
-                    <p>${data.PIDNumber}</p>
-                    <p>${data.action}</p>
-                    <p>${data.WorkingCompany}</p>
-                    <p>${data.rAmount}</p>
-                    <p>${data.nShvaIntIn}</p>
-                    <p>${data.Confirmation}</p>
-                    <p>${data.rCurrency}</p>
-                    <p>${data.rCardNum}</p>
-                    <p>${data.NoPayments}</p>
-                    <p>${data.HomeAddress}</p>
+                    <p>${data[0]}</p>
+                    <p>${data[1]}</p>
+                    <p>${data[2]}</p>
+                    <p>${data[3]}</p>
+                    <p>${data[4]}</p>
+                    <p>${data[5]}</p>
+                    <p>${data[6]}</p>
+                    <p>${data[7]}</p>
+                    <p>${data[8]}</p>
+                    <p>${data[9]}</p>
+                    <p>${data[10]}</p>
+                    <p>${data[11]}</p>
+                    <p>${data[11]}</p>
+                    <p>${data[12]}</p>
+                    <p>${data[13]}</p>
+                    <p>${data[14]}</p>
+                    <p>${data[15]}</p>
+                    <p>${data[16]}</p>
+                    <p>${data[17]}</p>
+                    <p>${data[18]}</p>
+                    <p>${data[19]}</p>
+                    <p>${data[20]}</p>
 `,
         }
         await this.mailerService.sendMail(mailOptions)

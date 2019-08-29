@@ -10,21 +10,21 @@ export class MongoDBService {
     collection;
 
     public async init() {
-        // const uri = "mongodb+srv://shmura:knasim15@shmuracluster-vx7fp.mongodb.net/test?retryWrites=true&w=majority";
-        // MongoClient.connect(uri,  {
-        //     useNewUrlParser: true,
-        //     useUnifiedTopology: true
-        // }, function(err: any, client: any) {
-        //     if(err) {
-        //         console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
-        //     }
-        //     else {
-        //         console.log('Connected...');
-        //     }
-        //     // const collection = client.db("RecieptsDataDB").collection("Receipt");
-        //     // perform actions on the collection object
-        //     // client.close();
-        // });
+        const uri = "mongodb+srv://shmura:knasim15@shmuracluster-vx7fp.mongodb.net/test?retryWrites=true&w=majority";
+        MongoClient.connect(uri,  {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        }, function(err: any, client: any) {
+            if(err) {
+                console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+            }
+            else {
+                console.log('Connected...');
+            }
+            const collection = client.db("RecieptsDataDB").collection("Receipt");
+            // perform actions on the collection object
+            // client.close();
+        });
 
         //
         // const url = process.env.MONGO_URI
