@@ -29,28 +29,28 @@ export class MailService {
             from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
                 subject: 'nedarim data', // Subject line
             html: `
-                    <p>${data[0]}</p>
-                    <p>${data[1]}</p>
-                    <p>${data[2]}</p>
-                    <p>${data[3]}</p>
-                    <p>${data[4]}</p>
-                    <p>${data[5]}</p>
-                    <p>${data[6]}</p>
-                    <p>${data[7]}</p>
-                    <p>${data[8]}</p>
-                    <p>${data[9]}</p>
-                    <p>${data[10]}</p>
-                    <p>${data[11]}</p>
-                    <p>${data[11]}</p>
-                    <p>${data[12]}</p>
-                    <p>${data[13]}</p>
-                    <p>${data[14]}</p>
-                    <p>${data[15]}</p>
-                    <p>${data[16]}</p>
-                    <p>${data[17]}</p>
-                    <p>${data[18]}</p>
-                    <p>${data[19]}</p>
-                    <p>${data[20]}</p>
+                    <p>${arrayOfData[0]}</p>
+                    <p>${arrayOfData[1]}</p>
+                    <p>${arrayOfData[2]}</p>
+                    <p>${arrayOfData[3]}</p>
+                    <p>${arrayOfData[4]}</p>
+                    <p>${arrayOfData[5]}</p>
+                    <p>${arrayOfData[6]}</p>
+                    <p>${arrayOfData[7]}</p>
+                    <p>${arrayOfData[8]}</p>
+                    <p>${arrayOfData[9]}</p>
+                    <p>${arrayOfData[10]}</p>
+                    <p>${arrayOfData[11]}</p>
+                    <p>${arrayOfData[11]}</p>
+                    <p>${arrayOfData[12]}</p>
+                    <p>${arrayOfData[13]}</p>
+                    <p>${arrayOfData[14]}</p>
+                    <p>${arrayOfData[15]}</p>
+                    <p>${arrayOfData[16]}</p>
+                    <p>${arrayOfData[17]}</p>
+                    <p>${arrayOfData[18]}</p>
+                    <p>${arrayOfData[19]}</p>
+                    <p>${arrayOfData[20]}</p>
 `,
         }
         await this.mailerService.sendMail(mailOptions)

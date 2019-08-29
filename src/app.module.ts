@@ -11,7 +11,7 @@ import { HandlebarsAdapter, MailerModule } from '@nest-modules/mailer';
   providers:[AppService, PdfFileService , MailService, MongoDBService],
   imports: [
     MailerModule.forRoot({
-      transport: `smtp://${process.env.GMAIL_SMTP_USER}:${process.env.GMAIL_SMTP_PASSWORD}@smtp.gmail.com`,
+      transport: `smtp://shmur@shmura.org:ahnahn@smtp.gmail.com`,
       defaults: {
         from: `${process.env.GMAIL_SMTP_USER}`,
       },
