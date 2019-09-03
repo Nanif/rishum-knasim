@@ -32,7 +32,7 @@ export class AppController {
         });
         let isRishumKnasim = true;
         if (data.Groupe) {
-            isRishumKnasim = data.Groupe === 'שמועה' ? false : true
+            isRishumKnasim = data.Groupe === 'שמועה' ||  data.Groupe === 'תרומה לשמורה'? false : true
         }
         if (isRishumKnasim) {
             this.mailService.sendApplicationMail(data).then(() => {
