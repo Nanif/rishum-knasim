@@ -6,6 +6,9 @@ import { MongoDBService } from './services/mongoDB.service';
 import { Module } from '@nestjs/common';
 import { HandlebarsAdapter, MailerModule } from '@nest-modules/mailer';
 
+//  transport: `smtp://${process.env.GMAIL_SMTP_USER}:${process.env.GMAIL_SMTP_PASSWORD}@smtp.gmail.com`,
+
+
 @Module({
   controllers:[AppController],
   providers:[AppService, PdfFileService , MailService, MongoDBService],
