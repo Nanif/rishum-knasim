@@ -82,9 +82,8 @@ export class MailService {
 <p>תודה שרצית להיות חלק,</p>
 <p>שמחות שבחרת לפסוע איתנו במסלול העולה-</p>
 <p>ויהי רצון שיעלה לרצון לפניו יתברך....</p>
-<p>מצורפת קבלה עבור תשלום דמי ההשתתפות בכנס.</p>
-<p>הקבלה היא כרטיס הכניסה שלך</p>
-<p>נא הדפיסי והציגי אותה בכניסה לאולם.</p>
+<p>מצורף כרטיס הכניסה שלך לכנס,</p>
+<p>נא הדפיסי והציגי אותו בכניסה לאולם.</p>
 <p>מחכות לראותך,</p>
 <p>צוות השמורה</p>
 </div>
@@ -92,17 +91,9 @@ export class MailService {
 
         <div style="border: 2px solid rgba(43,43,43,0.92);height: 550px;width: 350px; text-align: center;color:red;font-size: 18px">
             <img src="http://shmura.org/wp-content/uploads/2019/03/logo-malchut.jpg" alt="" style="width: auto; height: 150px">
-        <p> ${data.ClientName} </p>
-
-        <p>  ברוכה הבאה לכנס כלולות.</p>
+        <p> כרטיס כניסה לכנס ויהיו לרצון</p>
 
         <p> כרטיס זה הינו על סך  <span>${data.Amount}</span></p>
-
-        <p>  מחכות לראותך,</p>
-
-        <p>  לאה וצוות שמורה</p>
-
-        <p>  חובה להדפיס את הכרטיס ולהציגו בכניסה לערב</p>
 
     </div>
 </div>
