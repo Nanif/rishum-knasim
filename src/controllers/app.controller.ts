@@ -38,10 +38,10 @@ export class AppController {
 
         //save data in mongodb
         // @ts-ignore
-        this.mongoDBService.saveDataInDb(data).then((res) => {
-            console.log('res', res)
-        }).catch((error) => {
-            console.log('error', error);
-        });
+        // this.mongoDBService.saveDataInDb(data).then((res) => {
+        //     console.log('res', res)
+        // }).catch((error) => {
+        //     console.log('error', error);
+        // });
     }
 }
