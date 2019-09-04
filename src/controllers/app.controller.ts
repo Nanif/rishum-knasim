@@ -16,20 +16,14 @@ export class AppController {
 
     @Post('sendReceipt')
     SendReceipt(@Body() data) {
-
-        // @ts-ignore
-        this.mongoDBService.saveDataInDb(data).then((res) => {
-            console.log('res', res)
-        }).catch((error) => {
-            console.log('error', error);
-        });
-
-        // let pdfFile = this.pdfFileService.createPdf(data)
+        // send data to knasim@gmail.com mail
         this.mailService.sendDataForSaveIt(data).then(() => {
             console.log('data sent....')
         }).catch((error) => {
             console.log('data didnt saved', error, data)
         });
+
+        // send card to user email
         let isRishumKnasim = true;
         if (data.Groupe) {
             isRishumKnasim = data.Groupe === 'שמועה' ||  data.Groupe === 'תרומה לשמורה'? false : true
@@ -40,7 +34,14 @@ export class AppController {
             }).catch((error) => {
                 console.log('card didnt sent', error, data)
             });
-            return this.appService.getHello();
         }
+
+        //save data in mongodb
+        // @ts-ignore
+        this.mongoDBService.saveDataInDb(data).then((res) => {
+            console.log('res', res)
+        }).catch((error) => {
+            console.log('error', error);
+        });
     }
 }
