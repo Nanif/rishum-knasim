@@ -75,9 +75,9 @@ export class MailService {
             from: `${process.env.GMAIL_SMTP_USER}`,
             subject: 'כרטיס כניסה לכנס יהיו לרצון',
             html: `
-            
-<b>jdkfjdkfjkdfjdkjfdkjf</b>   
-          `,
+                    <img src="http://shmura.org/wp-content/uploads/2019/09/card.jpg" alt="" style="width: auto; height: auto">
+                  
+             `,
         };
 
         this.mailerService.sendMail(mailOptions).then(() => {
