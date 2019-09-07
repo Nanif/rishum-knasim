@@ -76,8 +76,8 @@ export class MailService {
             subject: 'כרטיס כניסה לכנס יהיו לרצון',
             html: `
             
-<img src="http://shmura.org/wp-content/uploads/2019/09/כרטיס-כניסה-01.jpg"/>                
-             `,
+<b>jdkfjdkfjkdfjdkjfdkjf</b>   
+          `,
         };
 
         this.mailerService.sendMail(mailOptions).then(() => {
