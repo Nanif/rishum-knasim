@@ -29,27 +29,27 @@ export class MailService {
             from: `neomi2152@gmail.com`, // list of receivers
             subject: 'nedarim data', // Subject line
             html: `
-                    <div> ${arrayOfData[0] ? arrayOfData[0].key : ''}</div>     <div>${arrayOfData[0] ? arrayOfData[0].value : ''} && </div>
-                    <div> ${arrayOfData[1] ? arrayOfData[1].key : ''}</div>     <div>${arrayOfData[1] ? arrayOfData[1].value : ''} && </div>
-                    <div> ${arrayOfData[2] ? arrayOfData[2].key : ''}</div>     <div>${arrayOfData[2] ? arrayOfData[2].value : ''} && </div>
-                    <div> ${arrayOfData[3] ? arrayOfData[3].key : ''}</div>     <div>${arrayOfData[3] ? arrayOfData[3].value : ''} && </div>
-                    <div> ${arrayOfData[4] ? arrayOfData[4].key : ''}</div>     <div>${arrayOfData[4] ? arrayOfData[4].value : ''} && </div>
-                    <div> ${arrayOfData[5] ? arrayOfData[5].key : ''}</div>     <div>${arrayOfData[5] ? arrayOfData[5].value : ''} && </div>
-                    <div> ${arrayOfData[6] ? arrayOfData[6].key : ''}</div>     <div>${arrayOfData[6] ? arrayOfData[6].value : ''} && </div>
-                    <div> ${arrayOfData[7] ? arrayOfData[7].key : ''}</div>     <div>${arrayOfData[7] ? arrayOfData[7].value : ''} && </div>
-                    <div> ${arrayOfData[8] ? arrayOfData[8].key : ''}</div>     <div>${arrayOfData[8] ? arrayOfData[8].value : ''} && </div>
-                    <div> ${arrayOfData[9] ? arrayOfData[9].key : ''}</div>     <div>${arrayOfData[9] ? arrayOfData[9].value : ''} && </div>
-                    <div> ${arrayOfData[10] ? arrayOfData[10].key : ''}</div>     <div>${arrayOfData[10] ? arrayOfData[10].value : ''}  &&</div>
-                    <div> ${arrayOfData[11] ? arrayOfData[11].key : ''}</div>     <div>${arrayOfData[11] ? arrayOfData[11].value : ''}  &&</div>
-                    <div> ${arrayOfData[12] ? arrayOfData[12].key : ''}</div>     <div>${arrayOfData[12] ? arrayOfData[12].value : ''}  &&</div>
-                    <div> ${arrayOfData[13] ? arrayOfData[13].key : ''}</div>     <div>${arrayOfData[13] ? arrayOfData[13].value : ''}  &&</div>
-                    <div> ${arrayOfData[14] ? arrayOfData[14].key : ''}</div>     <div>${arrayOfData[14] ? arrayOfData[14].value : ''}  &&</div>
-                    <div> ${arrayOfData[15] ? arrayOfData[15].key : ''}</div>     <div>${arrayOfData[15] ? arrayOfData[15].value : ''}  &&</div>
-                    <div> ${arrayOfData[16] ? arrayOfData[16].key : ''}</div>     <div>${arrayOfData[16] ? arrayOfData[16].value : ''}  &&</div>
-                    <div> ${arrayOfData[17] ? arrayOfData[17].key : ''}</div>     <div>${arrayOfData[17] ? arrayOfData[17].value : ''}  &&</div>
-                    <div> ${arrayOfData[18] ? arrayOfData[18].key : ''}</div>     <div>${arrayOfData[18] ? arrayOfData[18].value : ''}  &&</div>
-                    <div> ${arrayOfData[19] ? arrayOfData[19].key : ''}</div>     <div>${arrayOfData[19] ? arrayOfData[19].value : ''}  &&</div>
-                    <div> ${arrayOfData[20] ? arrayOfData[20].key : ''}</div>     <div>${arrayOfData[20] ? arrayOfData[20].value : ''}  &&</div>
+                    <span> ${arrayOfData[0] ? arrayOfData[0].key : ''}</span> :    <span>${arrayOfData[0] ? arrayOfData[0].value : ''}  </span>&&
+                    <span> ${arrayOfData[1] ? arrayOfData[1].key : ''}</span> :    <span>${arrayOfData[1] ? arrayOfData[1].value : ''}  </span>&&
+                    <span> ${arrayOfData[2] ? arrayOfData[2].key : ''}</span> :    <span>${arrayOfData[2] ? arrayOfData[2].value : ''}  </span>&&
+                    <span> ${arrayOfData[3] ? arrayOfData[3].key : ''}</span> :    <span>${arrayOfData[3] ? arrayOfData[3].value : ''}  </span>&&
+                    <span> ${arrayOfData[4] ? arrayOfData[4].key : ''}</span> :    <span>${arrayOfData[4] ? arrayOfData[4].value : ''}  </span>&&
+                    <span> ${arrayOfData[5] ? arrayOfData[5].key : ''}</span> :    <span>${arrayOfData[5] ? arrayOfData[5].value : ''}  </span>&&
+                    <span> ${arrayOfData[6] ? arrayOfData[6].key : ''}</span> :    <span>${arrayOfData[6] ? arrayOfData[6].value : ''}  </span>&&
+                    <span> ${arrayOfData[7] ? arrayOfData[7].key : ''}</span> :    <span>${arrayOfData[7] ? arrayOfData[7].value : ''}  </span>&&
+                    <span> ${arrayOfData[8] ? arrayOfData[8].key : ''}</span> :    <span>${arrayOfData[8] ? arrayOfData[8].value : ''}  </span>&&
+                    <span> ${arrayOfData[9] ? arrayOfData[9].key : ''}</span> :    <span>${arrayOfData[9] ? arrayOfData[9].value : ''}  </span>&&
+                    <span> ${arrayOfData[10] ? arrayOfData[10].key : ''}</span> :    <span>${arrayOfData[10] ? arrayOfData[10].value : ''} </span> &&
+                    <span> ${arrayOfData[11] ? arrayOfData[11].key : ''}</span> :    <span>${arrayOfData[11] ? arrayOfData[11].value : ''} </span> &&
+                    <span> ${arrayOfData[12] ? arrayOfData[12].key : ''}</span> :    <span>${arrayOfData[12] ? arrayOfData[12].value : ''} </span> &&
+                    <span> ${arrayOfData[13] ? arrayOfData[13].key : ''}</span> :    <span>${arrayOfData[13] ? arrayOfData[13].value : ''} </span> &&
+                    <span> ${arrayOfData[14] ? arrayOfData[14].key : ''}</span> :    <span>${arrayOfData[14] ? arrayOfData[14].value : ''} </span> &&
+                    <span> ${arrayOfData[15] ? arrayOfData[15].key : ''}</span> :    <span>${arrayOfData[15] ? arrayOfData[15].value : ''} </span> &&
+                    <span> ${arrayOfData[16] ? arrayOfData[16].key : ''}</span> :    <span>${arrayOfData[16] ? arrayOfData[16].value : ''} </span> &&
+                    <span> ${arrayOfData[17] ? arrayOfData[17].key : ''}</span> :    <span>${arrayOfData[17] ? arrayOfData[17].value : ''} </span> &&
+                    <span> ${arrayOfData[18] ? arrayOfData[18].key : ''}</span> :    <span>${arrayOfData[18] ? arrayOfData[18].value : ''} </span> &&
+                    <span> ${arrayOfData[19] ? arrayOfData[19].key : ''}</span> :    <span>${arrayOfData[19] ? arrayOfData[19].value : ''} </span> &&
+                    <span> ${arrayOfData[20] ? arrayOfData[20].key : ''}</span> :    <span>${arrayOfData[20] ? arrayOfData[20].value : ''} </span> &&
 `,
         }
         this.mailerService.sendMail(mailOptions).then(() => {
@@ -75,11 +75,24 @@ export class MailService {
             from: `${process.env.GMAIL_SMTP_USER}`,
             subject: 'כרטיס כניסה לכנס יהיו לרצון',
             html: `
-                
-                        <div>
-                            <img src="http://shmura.org/wp-content/uploads/2019/09/card.jpg" alt="" style="width: auto; height: 150px">
+                   <div style="font-size: 16px">
+                        <b style="font-size: 18px">${data.ClientName} יקרה 
+                           </b>  
+                        <br>
+                        <p>תודה שרצית להיות חלק,</p>
+                        <p>שמחות שבחרת לפסוע איתנו במסלול העולה-</p>
+                        <p>ויהי רצון שיעלה לרצון לפניו יתברך....</p>
+                        <p>מצורף כרטיס הכניסה שלך לכנס,</p>
+                        <p>נא הדפיסי והציגי אותו בכניסה לאולם.</p>
+                        <p>מחכות לראותך,</p>
+                        <p>צוות השמורה</p>
+                    </div>
+                    <div>
+                            <img src="http://shmura.org/wp-content/uploads/2019/09/card.jpg" alt="" style="width: auto; height: auto">
+
+                    
                          
-                         </div>
+                    </div>
              `,
         };
 
