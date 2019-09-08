@@ -88,7 +88,7 @@ export class MailService {
                         <p>צוות השמורה</p>
                     </div>
                     <div>
-                            <img src="http://shmura.org/wp-content/uploads/2019/09/eneterCard.jpg" alt="" style="width: auto; height: auto">
+                            <img src="http://shmura.org/wp-content/uploads/2019/09/eneterCard.jpg" alt="" style="width: 500px; height: auto">
 
                     </div>
              `,
