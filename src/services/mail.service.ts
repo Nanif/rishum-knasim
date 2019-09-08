@@ -75,18 +75,7 @@ export class MailService {
             from: `${process.env.GMAIL_SMTP_USER}`,
             subject: 'כרטיס כניסה לכנס יהיו לרצון',
             html: `
-                   <div style="font-size: 16px">
-                        <b style="font-size: 18px">${data.ClientName} יקרה 
-                           </b>  
-                        <br>
-                        <p>תודה שרצית להיות חלק,</p>
-                        <p>שמחות שבחרת לפסוע איתנו במסלול העולה-</p>
-                        <p>ויהי רצון שיעלה לרצון לפניו יתברך....</p>
-                        <p>מצורף כרטיס הכניסה שלך לכנס,</p>
-                        <p>נא הדפיסי והציגי אותו בכניסה לאולם.</p>
-                        <p>מחכות לראותך,</p>
-                        <p>צוות השמורה</p>
-                    </div>
+                  
                     <div>
                             <img src="http://shmura.org/wp-content/uploads/2019/09/card.jpg" alt="" style="width: auto; height: auto">
 
