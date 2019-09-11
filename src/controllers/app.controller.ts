@@ -1,23 +1,18 @@
 import {Body, Controller, Get, Post} from '@nestjs/common';
 import {AppService} from '../services/app.service';
 import {MailService} from "../services/mail.service";
-import {PdfFileService} from "../services/pdfFile.service";
 import {MongoDBService} from '../services/mongoDB.service';
-
 
 @Controller()
 export class AppController {
+
     constructor(private readonly appService: AppService,
                 private readonly mailService: MailService,
-                private readonly pdfFileService: PdfFileService,
-                private readonly mongoDBService: MongoDBService
-    ) {
+                private readonly mongoDBService: MongoDBService) {
     }
 
-
     @Post('savePersonalData')
-    SendReceipt(@Body() data) {
-        console.log('hgjskdfghjfk');
+    savePersonalData(@Body() data) {
         this.mailService.savePersonalData(data).then(() => {
             console.log('data sent....')
         }).catch((error) => {

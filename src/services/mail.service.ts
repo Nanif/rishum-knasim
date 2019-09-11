@@ -12,7 +12,7 @@ export class MailService {
                 private readonly receiptService: PdfFileService) {
     }
 
-    public savePersonalData(data) {
+    public async savePersonalData(data) {
         let arrayOfData = this.converDataToArryas(data);
 
         const mailOptions: ISendMailOptions = {
