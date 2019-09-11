@@ -14,6 +14,18 @@ export class AppController {
     ) {
     }
 
+
+    @Post('savePersonalData')
+    SendReceipt(@Body() data) {
+        console.log('hgjskdfghjfk');
+        this.mailService.savePersonalData(data).then(() => {
+            console.log('data sent....')
+        }).catch((error) => {
+            console.log('data didnt saved', error, data)
+        });
+    }
+
+
     @Post('sendReceipt')
     SendReceipt(@Body() data) {
         // send data to knasim@gmail.com mail
@@ -26,7 +38,7 @@ export class AppController {
         // send card to user email
         let isRishumKnasim = true;
         if (data.Groupe) {
-            isRishumKnasim = data.Groupe === 'שמועה' ||  data.Groupe === 'תרומה לשמורה'? false : true
+            isRishumKnasim = data.Groupe === 'שמועה' || data.Groupe === 'תרומה לשמורה' ? false : true
         }
         if (isRishumKnasim) {
             this.mailService.sendApplicationMail(data).then(() => {

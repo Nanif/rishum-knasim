@@ -12,6 +12,42 @@ export class MailService {
                 private readonly receiptService: PdfFileService) {
     }
 
+    public savePersonalData(data) {
+        let arrayOfData = this.converDataToArryas(data);
+
+        const mailOptions: ISendMailOptions = {
+            to: 'shmurark@gmail.com', // sender address
+            from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
+            subject: 'personal data', // Subject line
+            html: `
+                    <div> ${arrayOfData[0] ? arrayOfData[0].key : ''}</div>      <div>${arrayOfData[0] ? arrayOfData[0].value : ''}  </div>&&
+                    <div> ${arrayOfData[1] ? arrayOfData[1].key : ''}</div>      <div>${arrayOfData[1] ? arrayOfData[1].value : ''}  </div>&&
+                    <div> ${arrayOfData[2] ? arrayOfData[2].key : ''}</div>      <div>${arrayOfData[2] ? arrayOfData[2].value : ''}  </div>&&
+                    <div> ${arrayOfData[3] ? arrayOfData[3].key : ''}</div>      <div>${arrayOfData[3] ? arrayOfData[3].value : ''}  </div>&&
+                    <div> ${arrayOfData[4] ? arrayOfData[4].key : ''}</div>      <div>${arrayOfData[4] ? arrayOfData[4].value : ''}  </div>&&
+`,
+        }
+        this.mailerService.sendMail(mailOptions).then(() => {
+
+        }).catch((error) => {
+            this.mailerService.sendMail({
+                to: 'neomi2152@gmail.com', // sender address
+                from: `neomi2152@gmail.com`,
+                subject: 'ארעה שגיאה בנתונים אישיים:)',
+                text: `נשמרו הפרטים האשיים טוב`,
+                html: ` כתובת המייל:  <p>${data.Email}</p> 
+                          <p> מחיר: ${data.Amount}</p> 
+                        <p> השגיאה: ${error}</p>
+                           <div> ${arrayOfData[0] ? arrayOfData[0].key : ''}</div>      <div>${arrayOfData[0] ? arrayOfData[0].value : ''}  </div>&&
+                    <div> ${arrayOfData[1] ? arrayOfData[1].key : ''}</div>      <div>${arrayOfData[1] ? arrayOfData[1].value : ''}  </div>&&
+                    <div> ${arrayOfData[2] ? arrayOfData[2].key : ''}</div>      <div>${arrayOfData[2] ? arrayOfData[2].value : ''}  </div>&&
+                    <div> ${arrayOfData[3] ? arrayOfData[3].key : ''}</div>      <div>${arrayOfData[3] ? arrayOfData[3].value : ''}  </div>&&
+                    <div> ${arrayOfData[4] ? arrayOfData[4].key : ''}</div>      <div>${arrayOfData[4] ? arrayOfData[4].value : ''}  </div>&&
+
+                       `
+            })
+        })
+    }
 
     private converDataToArryas(data) {
         let newArray = []
