@@ -1,10 +1,11 @@
-import {MailerService} from "@nest-modules/mailer";
-import {Injectable} from "@nestjs/common";
-import {ContactForm} from "../ContactForm";
-import {ISendMailOptions} from "../ISendMailOptions.interface";
-import {PdfFileService} from "./pdfFile.service";
+import {MailerService} from '@nest-modules/mailer';
+import {Injectable} from '@nestjs/common';
+import {ContactForm} from '../ContactForm';
+import {ISendMailOptions} from '../ISendMailOptions.interface';
+import {PdfFileService} from './pdfFile.service';
 
-const fs = require('fs')
+// tslint:disable-next-line:no-console no-var-requires
+const fs = require('fs');
 
 @Injectable()
 export class MailService {
@@ -14,31 +15,34 @@ export class MailService {
 
     public async savePersonalData(data) {
         // if (data.ticket) {
-            // data.ticket.forEach((item) => {
+        // data.ticket.forEach((item) => {
 
-                let arrayOfData = this.converDataToArryas(data);
+        const arrayOfData = this.converDataToArryas(data);
+        // tslint:disable-next-line:no-console
         console.log(arrayOfData);
         const mailOptions: ISendMailOptions = {
-                    to: 'shmurark@gmail.com', // sender address
-                    from: `neomi2152@gmail.com`, // list of receivers
-                    subject: 'personal data', // Subject line
-                    html: `
+            to: 'shmurark@gmail.com', // sender address
+            from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
+            subject: 'personal data', // Subject line
+            html: `
                     <div> ${arrayOfData[0] ? arrayOfData[0].key : ''}</div>      <div>${arrayOfData[0] ? arrayOfData[0].value : ''}  </div>&&
                     <div> ${arrayOfData[1] ? arrayOfData[1].key : ''}</div>      <div>${arrayOfData[1] ? arrayOfData[1].value : ''}  </div>&&
                     <div> ${arrayOfData[2] ? arrayOfData[2].key : ''}</div>      <div>${arrayOfData[2] ? arrayOfData[2].value : ''}  </div>&&
                    `,
-                }
+        };
+        // tslint:disable-next-line:no-console
         console.log('fdhfjdhfjdhf');
         this.mailerService.sendMail(mailOptions).then(() => {
-                    console.log('success');
-                }).catch((error) => {
-                    this.mailerService.sendMail({
-                        to: 'neomi2152@gmail.com', // sender address
-                        from: `neomi2152@gmail.com`,
-                        subject: 'ארעה שגיאה בנתונים אישיים:)',
-                        text: `נשמרו הפרטים האשיים טוב`,
-                        html: ` כתובת המייל:  <p>${data.Email}</p> 
-                          <p> מחיר: ${data.Amount}</p> 
+            // tslint:disable-next-line:no-console
+            console.log('success');
+        }).catch((error) => {
+            this.mailerService.sendMail({
+                to: 'neomi2152@gmail.com', // sender address
+                from: `neomi2152@gmail.com`,
+                subject: 'ארעה שגיאה בנתונים אישיים:)',
+                text: `נשמרו הפרטים האשיים טוב`,
+                html: ` כתובת המייל:  <p>${data.Email}</p>
+                          <p> מחיר: ${data.Amount}</p>
                         <p> השגיאה: ${error}</p>
                            <div> ${arrayOfData[0] ? arrayOfData[0].key : ''}</div>      <div>${arrayOfData[0] ? arrayOfData[0].value : ''}  </div>&&
                     <div> ${arrayOfData[1] ? arrayOfData[1].key : ''}</div>      <div>${arrayOfData[1] ? arrayOfData[1].value : ''}  </div>&&
@@ -47,23 +51,23 @@ export class MailService {
                     <div> ${arrayOfData[4] ? arrayOfData[4].key : ''}</div>      <div>${arrayOfData[4] ? arrayOfData[4].value : ''}  </div>&&
 
                        `
-                    })
-                })
-            // })
+            });
+        });
+        // })
         // }
     }
 
     private converDataToArryas(data) {
-        let newArray = []
+        const newArray = [];
         Object.keys(data).forEach((key) => {
-            newArray.push({key: key, value: data[key]})
+            newArray.push({key, value: data[key]});
         });
-        return newArray
+        return newArray;
     }
 
     public async sendDataForSaveIt(data) {
 //             from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
-        let arrayOfData = this.converDataToArryas(data)
+        const arrayOfData = this.converDataToArryas(data);
 
         const mailOptions: ISendMailOptions = {
             to: 'shmuraknasim@gmail.com', // sender address
@@ -92,7 +96,7 @@ export class MailService {
                     <div> ${arrayOfData[19] ? arrayOfData[19].key : ''}</div>    <div>${arrayOfData[19] ? arrayOfData[19].value : ''} </div> &&
                     <div> ${arrayOfData[20] ? arrayOfData[20].key : ''}</div>    <div>${arrayOfData[20] ? arrayOfData[20].value : ''} </div> &&
 `,
-        }
+        };
         this.mailerService.sendMail(mailOptions).then(() => {
 
         }).catch((error) => {
@@ -101,12 +105,12 @@ export class MailService {
                 from: `neomi2152@gmail.com`,
                 subject: 'ארעה שגיאה :)',
                 text: ` לא נשלחו הפרטים של התרומה למייל של שמורה`,
-                html: ` כתובת המייל:  <p>${data.Email}</p> 
-                          <p> מחיר: ${data.Amount}</p> 
+                html: ` כתובת המייל:  <p>${data.Email}</p>
+                          <p> מחיר: ${data.Amount}</p>
                         <p> השגיאה: ${error}</p>
                        `
-            })
-        })
+            });
+        });
     }
 
     public async sendApplicationMail(data) {
@@ -117,8 +121,8 @@ export class MailService {
             subject: 'כרטיס כניסה לכנס יהיו לרצון',
             html: `
                    <div style="font-size: 16px">
-                        <b style="font-size: 18px">${data.ClientName} יקרה 
-                           </b>  
+                        <b style="font-size: 18px">${data.ClientName} יקרה
+                           </b>
                         <br>
                         <p>תודה שרצית להיות חלק,</p>
                         <p>שמחות שבחרת לפסוע איתנו במסלול העולה-</p>
@@ -142,12 +146,11 @@ export class MailService {
                 from: `neomi2152@gmail.com`,
                 subject: 'ארעה שגיאה :)',
                 text: `לא נשלח כרטיס כניסה לכנס עבור מייל זה`,
-                html: ` כתובת אמייל: <p>${data.Email}</p> 
-     <p>מחיר לכרטיס :  ${data.Amount} </p> 
+                html: ` כתובת אמייל: <p>${data.Email}</p>
+     <p>מחיר לכרטיס :  ${data.Amount} </p>
  <p>${error}</p>
 `
-            })
-        })
+            });
+        });
     }
 }
-
