@@ -13,29 +13,31 @@ export class MailService {
     }
 
     public async savePersonalData(data) {
+        // if (data.ticket) {
+            // data.ticket.forEach((item) => {
 
-        data.ticket.forEach((item) => {
-
-            let arrayOfData = this.converDataToArryas(item);
-            const mailOptions: ISendMailOptions = {
-                to: 'shmurark@gmail.com', // sender address
-                from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
-                subject: 'personal data', // Subject line
-                html: `
+                let arrayOfData = this.converDataToArryas(data);
+        console.log(arrayOfData);
+        const mailOptions: ISendMailOptions = {
+                    to: 'shmurark@gmail.com', // sender address
+                    from: `neomi2152@gmail.com`, // list of receivers
+                    subject: 'personal data', // Subject line
+                    html: `
                     <div> ${arrayOfData[0] ? arrayOfData[0].key : ''}</div>      <div>${arrayOfData[0] ? arrayOfData[0].value : ''}  </div>&&
                     <div> ${arrayOfData[1] ? arrayOfData[1].key : ''}</div>      <div>${arrayOfData[1] ? arrayOfData[1].value : ''}  </div>&&
                     <div> ${arrayOfData[2] ? arrayOfData[2].key : ''}</div>      <div>${arrayOfData[2] ? arrayOfData[2].value : ''}  </div>&&
                    `,
-            }
-            this.mailerService.sendMail(mailOptions).then(() => {
-
-            }).catch((error) => {
-                this.mailerService.sendMail({
-                    to: 'neomi2152@gmail.com', // sender address
-                    from: `neomi2152@gmail.com`,
-                    subject: 'ארעה שגיאה בנתונים אישיים:)',
-                    text: `נשמרו הפרטים האשיים טוב`,
-                    html: ` כתובת המייל:  <p>${data.Email}</p> 
+                }
+        console.log('fdhfjdhfjdhf');
+        this.mailerService.sendMail(mailOptions).then(() => {
+                    console.log('success');
+                }).catch((error) => {
+                    this.mailerService.sendMail({
+                        to: 'neomi2152@gmail.com', // sender address
+                        from: `neomi2152@gmail.com`,
+                        subject: 'ארעה שגיאה בנתונים אישיים:)',
+                        text: `נשמרו הפרטים האשיים טוב`,
+                        html: ` כתובת המייל:  <p>${data.Email}</p> 
                           <p> מחיר: ${data.Amount}</p> 
                         <p> השגיאה: ${error}</p>
                            <div> ${arrayOfData[0] ? arrayOfData[0].key : ''}</div>      <div>${arrayOfData[0] ? arrayOfData[0].value : ''}  </div>&&
@@ -45,9 +47,10 @@ export class MailService {
                     <div> ${arrayOfData[4] ? arrayOfData[4].key : ''}</div>      <div>${arrayOfData[4] ? arrayOfData[4].value : ''}  </div>&&
 
                        `
+                    })
                 })
-            })
-        })
+            // })
+        // }
     }
 
     private converDataToArryas(data) {
@@ -61,6 +64,7 @@ export class MailService {
     public async sendDataForSaveIt(data) {
 //             from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
         let arrayOfData = this.converDataToArryas(data)
+
         const mailOptions: ISendMailOptions = {
             to: 'shmuraknasim@gmail.com', // sender address
             from: `neomi2152@gmail.com`, // list of receivers
