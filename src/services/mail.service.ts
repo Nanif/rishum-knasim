@@ -16,10 +16,10 @@ export class MailService {
     public async savePersonalData(data) {
         // if (data.ticket) {
         // data.ticket.forEach((item) => {
-
+        console.log(data);
         const arrayOfData = this.converDataToArryas(data);
-        // tslint:disable-next-line:no-console
         console.log(arrayOfData);
+        // tslint:disable-next-line:no-console
         const mailOptions: ISendMailOptions = {
             to: 'shmurark@gmail.com', // sender address
             from: `${process.env.GMAIL_SMTP_USER}`, // list of receivers
